@@ -2,3 +2,4 @@ package/
 dist/
 .venv/
 aspect_sdk.egg-info/
+__pycache__/
