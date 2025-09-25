@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from aspect_sdk._generated.models.core_feature_type import CoreFeatureType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +33,7 @@ class IndexUpdateRequest(BaseModel):
     num_assets: Optional[StrictInt] = None
     size_bytes: Optional[StrictInt] = None
     total_tokens_used: Optional[StrictInt] = None
-    duration: Optional[StrictInt] = None
+    duration: Optional[Union[StrictFloat, StrictInt]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["name", "description", "default_features", "num_assets", "size_bytes", "total_tokens_used", "duration"]
 

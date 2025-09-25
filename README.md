@@ -8,17 +8,19 @@ This SDK delivers an intuitive interface for building applications with Aspect's
 pip install aspect-sdk
 ```
 
-## Quick Start
+## Usage
+
+### Initialize the Aspect client
+
+Sign up for your api key [here](https://playground.aspect.inc) and then head to the Api keys [tab](https://playground.aspect.inc/api-keys)
 
 ```python
-from aspect_sdk import AspectClient, AspectClientConfig
+from aspect_sdk import Aspect, AspectConfig
 
-client = AspectClient(AspectClientConfig(
+client = Aspect(AspectConfig(
     api_key='your-api-key',  # Required: Your API key 
 ))
 ```
-
-## Usage Examples
 
 ### Create an Index
 
@@ -74,9 +76,9 @@ Search across your indexed video content using natural language queries.
 
 ```python
 # Basic search
-search_results = client.search.query({
+search_results = client.search.run({
     'index_id': index.id,
-    'query_text': "",
+    'query': "",
 })
 print("Search results", search_results)
 
@@ -117,7 +119,7 @@ This SDK is built with type safety in mind using Pydantic models and type hints:
 from aspect_sdk import (
     IndexCreateRequest,
     AssetCreateResponse,
-    AspectClientConfig,
+    AspectConfig,
     WaitForDoneOptions,
 )
 ```

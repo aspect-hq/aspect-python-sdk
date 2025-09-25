@@ -43,6 +43,8 @@ from aspect_sdk._generated.models.index_update_request import IndexUpdateRequest
 from aspect_sdk._generated.models.index_update_response import IndexUpdateResponse
 from aspect_sdk._generated.models.preview_get_response import PreviewGetResponse
 from aspect_sdk._generated.models.proxy_get_response import ProxyGetResponse
+from aspect_sdk._generated.models.search_request import SearchRequest
+from aspect_sdk._generated.models.search_response import SearchResponse
 from aspect_sdk._generated.models.task_create_request import TaskCreateRequest
 from aspect_sdk._generated.models.task_create_response import TaskCreateResponse
 from aspect_sdk._generated.models.task_get_response import TaskGetResponse

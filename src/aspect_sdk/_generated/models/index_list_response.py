@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from aspect_sdk._generated.models.core_feature_type import CoreFeatureType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +34,7 @@ class IndexListResponse(BaseModel):
     num_assets: StrictInt
     size_bytes: StrictInt
     total_tokens_used: StrictInt
-    duration: StrictInt
+    duration: Union[StrictFloat, StrictInt]
     user_id: Optional[StrictStr]
     default_features: List[CoreFeatureType]
     is_sample: StrictBool

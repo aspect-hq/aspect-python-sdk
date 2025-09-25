@@ -62,6 +62,8 @@ __all__ = [
     "IndexUpdateResponse",
     "PreviewGetResponse",
     "ProxyGetResponse",
+    "SearchRequest",
+    "SearchResponse",
     "TaskCreateRequest",
     "TaskCreateResponse",
     "TaskGetResponse",
@@ -119,6 +121,8 @@ from aspect_sdk._generated.models.index_update_request import IndexUpdateRequest
 from aspect_sdk._generated.models.index_update_response import IndexUpdateResponse as IndexUpdateResponse
 from aspect_sdk._generated.models.preview_get_response import PreviewGetResponse as PreviewGetResponse
 from aspect_sdk._generated.models.proxy_get_response import ProxyGetResponse as ProxyGetResponse
+from aspect_sdk._generated.models.search_request import SearchRequest as SearchRequest
+from aspect_sdk._generated.models.search_response import SearchResponse as SearchResponse
 from aspect_sdk._generated.models.task_create_request import TaskCreateRequest as TaskCreateRequest
 from aspect_sdk._generated.models.task_create_response import TaskCreateResponse as TaskCreateResponse
 from aspect_sdk._generated.models.task_get_response import TaskGetResponse as TaskGetResponse

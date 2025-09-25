@@ -17,32 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from aspect_sdk._generated.models.core_feature_type import CoreFeatureType
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class IndexUpdateResponse(BaseModel):
+class SearchRequest(BaseModel):
     """
-    API response schema for updating an index
+    API request schema for searching assets
     """ # noqa: E501
-    id: StrictStr
-    name: StrictStr
-    description: Optional[StrictStr]
-    num_assets: StrictInt
-    size_bytes: StrictInt
-    total_tokens_used: StrictInt
-    duration: Union[StrictFloat, StrictInt]
-    user_id: Optional[StrictStr]
-    default_features: List[CoreFeatureType]
-    is_sample: StrictBool
-    is_sample_ready: StrictBool
-    created: datetime
-    updated: datetime
+    index_id: StrictStr = Field(description="ID of the index to search within")
+    query: StrictStr = Field(description="The search query string")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "name", "description", "num_assets", "size_bytes", "total_tokens_used", "duration", "user_id", "default_features", "is_sample", "is_sample_ready", "created", "updated"]
+    __properties: ClassVar[List[str]] = ["index_id", "query"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,7 +49,7 @@ class IndexUpdateResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IndexUpdateResponse from a JSON string"""
+        """Create an instance of SearchRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,21 +77,11 @@ class IndexUpdateResponse(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if description (nullable) is None
-        # and model_fields_set contains the field
-        if self.description is None and "description" in self.model_fields_set:
-            _dict['description'] = None
-
-        # set to None if user_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.user_id is None and "user_id" in self.model_fields_set:
-            _dict['user_id'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IndexUpdateResponse from a dict"""
+        """Create an instance of SearchRequest from a dict"""
         if obj is None:
             return None
 
@@ -112,19 +89,8 @@ class IndexUpdateResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "description": obj.get("description"),
-            "num_assets": obj.get("num_assets"),
-            "size_bytes": obj.get("size_bytes"),
-            "total_tokens_used": obj.get("total_tokens_used"),
-            "duration": obj.get("duration"),
-            "user_id": obj.get("user_id"),
-            "default_features": obj.get("default_features"),
-            "is_sample": obj.get("is_sample"),
-            "is_sample_ready": obj.get("is_sample_ready"),
-            "created": obj.get("created"),
-            "updated": obj.get("updated")
+            "index_id": obj.get("index_id"),
+            "query": obj.get("query")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

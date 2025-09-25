@@ -1,6 +1,6 @@
 # Main entry point for the Aspect SDK
-from .client import AspectClient
-from .client_config import AspectClientConfig
+from .client import Aspect
+from .client_config import AspectConfig
 
 # Re-export resource classes for advanced usage
 from .resources.assets import Assets, AssetCreateRequest
@@ -53,6 +53,7 @@ from ._generated import (
     FeatureInfo,
     FeatureState,
     FeatureType,
+    CoreFeatureType,
     HTTPValidationError,
     IndexCreateRequest,
     IndexCreateResponse,
@@ -68,6 +69,8 @@ from ._generated import (
     UserGetResponse,
     ValidationError,
     ValidationErrorLocInner,
+    SearchRequest,
+    SearchResponse,
 )
 
 # Re-export custom types
@@ -75,8 +78,8 @@ from .custom.task_extensions import WaitForDoneOptions, TaskExtensions
 
 __all__ = [
     # Main client
-    "AspectClient",
-    "AspectClientConfig",
+    "Aspect",
+    "AspectConfig",
 
     # Resource classes
     "Assets",
@@ -132,6 +135,7 @@ __all__ = [
     "FeatureInfo",
     "FeatureState",
     "FeatureType",
+    "CoreFeatureType",
     "HTTPValidationError",
     "IndexCreateRequest",
     "IndexCreateResponse",
@@ -147,6 +151,8 @@ __all__ = [
     "UserGetResponse",
     "ValidationError",
     "ValidationErrorLocInner",
+    "SearchRequest",
+    "SearchResponse",
 ]
 
 

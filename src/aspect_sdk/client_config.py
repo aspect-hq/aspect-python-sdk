@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class AspectClientConfig(BaseModel):
+class AspectConfig(BaseModel):
     """Configuration for the Aspect Media Engine SDK client"""
     
     api_key: str = Field(..., description="API key for authentication")

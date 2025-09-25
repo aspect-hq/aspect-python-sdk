@@ -28,9 +28,9 @@ class TaskCreateRequest(BaseModel):
     API request schema for creating a new task
     """ # noqa: E501
     asset_id: StrictStr = Field(description="Asset to create task for")
-    feature_types: List[CoreFeatureType] = Field(description="Features to include in this task")
+    features: List[CoreFeatureType] = Field(description="Features to include in this task")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["asset_id", "feature_types"]
+    __properties: ClassVar[List[str]] = ["asset_id", "features"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +91,7 @@ class TaskCreateRequest(BaseModel):
 
         _obj = cls.model_validate({
             "asset_id": obj.get("asset_id"),
-            "feature_types": obj.get("feature_types")
+            "features": obj.get("features")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -1,6 +1,6 @@
 # Unified client for the Aspect SDK
 from aspect_sdk._generated import Configuration
-from aspect_sdk.client_config import AspectClientConfig
+from aspect_sdk.client_config import AspectConfig
 
 # Import resource classes directly from submodules to avoid circular imports
 from aspect_sdk.resources.assets import Assets
@@ -11,7 +11,7 @@ from aspect_sdk.resources.tasks import Tasks
 from aspect_sdk.resources.analyze import Analyze
 
 
-class AspectClient:
+class Aspect:
     """Main client for the Aspect Media Engine SDK"""
     
     # Type annotations for resource attributes
@@ -22,7 +22,7 @@ class AspectClient:
     tasks: Tasks
     analyze: Analyze
     
-    def __init__(self, config: AspectClientConfig):
+    def __init__(self, config: AspectConfig):
         # Create configuration for the generated SDK
         sdk_config = Configuration(
             host=config.base_url or "https://api.aspect.ai",

@@ -16,7 +16,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from typing import Any
+from aspect_sdk._generated.models.search_request import SearchRequest
+from aspect_sdk._generated.models.search_response import SearchResponse
 
 from aspect_sdk._generated.api_client import ApiClient, RequestSerialized
 from aspect_sdk._generated.api_response import ApiResponse
@@ -37,8 +38,9 @@ class SearchApi:
 
 
     @validate_call
-    def post_search_search(
+    def post_search_search_run(
         self,
+        search_request: SearchRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -51,11 +53,13 @@ class SearchApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> SearchResponse:
         """Search
 
         Perform a search operation
 
+        :param search_request: (required)
+        :type search_request: SearchRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -78,7 +82,8 @@ class SearchApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._post_search_search_serialize(
+        _param = self._post_search_search_run_serialize(
+            search_request=search_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -86,7 +91,8 @@ class SearchApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "SearchResponse",
+            '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -100,8 +106,9 @@ class SearchApi:
 
 
     @validate_call
-    def post_search_search_with_http_info(
+    def post_search_search_run_with_http_info(
         self,
+        search_request: SearchRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -114,11 +121,13 @@ class SearchApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[SearchResponse]:
         """Search
 
         Perform a search operation
 
+        :param search_request: (required)
+        :type search_request: SearchRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -141,7 +150,8 @@ class SearchApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._post_search_search_serialize(
+        _param = self._post_search_search_run_serialize(
+            search_request=search_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -149,7 +159,8 @@ class SearchApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "SearchResponse",
+            '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -163,8 +174,9 @@ class SearchApi:
 
 
     @validate_call
-    def post_search_search_without_preload_content(
+    def post_search_search_run_without_preload_content(
         self,
+        search_request: SearchRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -182,6 +194,8 @@ class SearchApi:
 
         Perform a search operation
 
+        :param search_request: (required)
+        :type search_request: SearchRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -204,7 +218,8 @@ class SearchApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._post_search_search_serialize(
+        _param = self._post_search_search_run_serialize(
+            search_request=search_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -212,7 +227,8 @@ class SearchApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "SearchResponse",
+            '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -221,8 +237,9 @@ class SearchApi:
         return response_data.response
 
 
-    def _post_search_search_serialize(
+    def _post_search_search_run_serialize(
         self,
+        search_request,
         _request_auth,
         _content_type,
         _headers,
@@ -248,6 +265,8 @@ class SearchApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if search_request is not None:
+            _body_params = search_request
 
 
         # set the HTTP header `Accept`
@@ -258,6 +277,19 @@ class SearchApi:
                 ]
             )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -267,7 +299,7 @@ class SearchApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/search/',
+            resource_path='/search/run',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

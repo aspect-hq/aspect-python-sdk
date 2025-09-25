@@ -5,6 +5,7 @@ from aspect_sdk._generated import (
     Configuration,
     ApiClient,
 )
+from aspect_sdk._generated.models import SearchRequest, SearchResponse
 
 
 class Search:
@@ -14,16 +15,14 @@ class Search:
         api_client = ApiClient(config)
         self._api = SearchApi(api_client)
     
-    def query(self, search_data: Any) -> Any:
+    def run(self, request: SearchRequest) -> SearchResponse:
         """
         Search across indexed content
         
         Args:
-            search_data: The search query data
+            parameters: The search query parameters containing index_id and query
             
         Returns:
             Search results
         """
-        # The generated API currently has no payload defined. When search payload is
-        # added to the OpenAPI spec, this wrapper can forward it.
-        return self._api.post_search_search()
+        return self._api.post_search_search_run(request)

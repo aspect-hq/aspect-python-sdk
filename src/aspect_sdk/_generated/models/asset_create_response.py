@@ -27,8 +27,9 @@ class AssetCreateResponse(BaseModel):
     API response schema for creating an asset
     """ # noqa: E501
     asset_id: StrictStr
+    task_id: StrictStr
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["asset_id"]
+    __properties: ClassVar[List[str]] = ["asset_id", "task_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +89,8 @@ class AssetCreateResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "asset_id": obj.get("asset_id")
+            "asset_id": obj.get("asset_id"),
+            "task_id": obj.get("task_id")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
