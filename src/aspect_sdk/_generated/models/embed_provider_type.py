@@ -18,22 +18,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class CoreFeatureType(str, Enum):
+class EmbedProviderType(str, Enum):
     """
-    Feature types that are exposed to users via the API
+    EmbedProviderType
     """
 
     """
     allowed enum values
     """
-    PROXY = 'proxy'
-    PREVIEW = 'preview'
-    VISUAL = 'visual'
-    TRANSCRIPTION = 'transcription'
+    COHERE = 'cohere'
+    MOCK = 'mock'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CoreFeatureType from a JSON string"""
+        """Create an instance of EmbedProviderType from a JSON string"""
         return cls(json.loads(json_str))
 
 

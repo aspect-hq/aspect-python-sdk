@@ -16,6 +16,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from typing import Optional
+from aspect_sdk._generated.models.embed_provider_type import EmbedProviderType
 from aspect_sdk._generated.models.search_request import SearchRequest
 from aspect_sdk._generated.models.search_response import SearchResponse
 
@@ -41,6 +43,7 @@ class SearchApi:
     def post_search_search_run(
         self,
         search_request: SearchRequest,
+        provider_type: Optional[EmbedProviderType] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,6 +63,8 @@ class SearchApi:
 
         :param search_request: (required)
         :type search_request: SearchRequest
+        :param provider_type:
+        :type provider_type: EmbedProviderType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -84,6 +89,7 @@ class SearchApi:
 
         _param = self._post_search_search_run_serialize(
             search_request=search_request,
+            provider_type=provider_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -109,6 +115,7 @@ class SearchApi:
     def post_search_search_run_with_http_info(
         self,
         search_request: SearchRequest,
+        provider_type: Optional[EmbedProviderType] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -128,6 +135,8 @@ class SearchApi:
 
         :param search_request: (required)
         :type search_request: SearchRequest
+        :param provider_type:
+        :type provider_type: EmbedProviderType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -152,6 +161,7 @@ class SearchApi:
 
         _param = self._post_search_search_run_serialize(
             search_request=search_request,
+            provider_type=provider_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -177,6 +187,7 @@ class SearchApi:
     def post_search_search_run_without_preload_content(
         self,
         search_request: SearchRequest,
+        provider_type: Optional[EmbedProviderType] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -196,6 +207,8 @@ class SearchApi:
 
         :param search_request: (required)
         :type search_request: SearchRequest
+        :param provider_type:
+        :type provider_type: EmbedProviderType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -220,6 +233,7 @@ class SearchApi:
 
         _param = self._post_search_search_run_serialize(
             search_request=search_request,
+            provider_type=provider_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -240,6 +254,7 @@ class SearchApi:
     def _post_search_search_run_serialize(
         self,
         search_request,
+        provider_type,
         _request_auth,
         _content_type,
         _headers,
@@ -262,6 +277,10 @@ class SearchApi:
 
         # process the path parameters
         # process the query parameters
+        if provider_type is not None:
+            
+            _query_params.append(('provider_type', provider_type.value))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

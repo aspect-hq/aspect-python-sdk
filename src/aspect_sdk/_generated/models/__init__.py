@@ -31,6 +31,7 @@ from aspect_sdk._generated.models.asset_type import AssetType
 from aspect_sdk._generated.models.asset_update_request import AssetUpdateRequest
 from aspect_sdk._generated.models.asset_update_response import AssetUpdateResponse
 from aspect_sdk._generated.models.core_feature_type import CoreFeatureType
+from aspect_sdk._generated.models.embed_provider_type import EmbedProviderType
 from aspect_sdk._generated.models.feature_info import FeatureInfo
 from aspect_sdk._generated.models.feature_state import FeatureState
 from aspect_sdk._generated.models.feature_type import FeatureType
@@ -39,6 +40,7 @@ from aspect_sdk._generated.models.index_create_request import IndexCreateRequest
 from aspect_sdk._generated.models.index_create_response import IndexCreateResponse
 from aspect_sdk._generated.models.index_get_response import IndexGetResponse
 from aspect_sdk._generated.models.index_list_response import IndexListResponse
+from aspect_sdk._generated.models.index_unit_get_response import IndexUnitGetResponse
 from aspect_sdk._generated.models.index_update_request import IndexUpdateRequest
 from aspect_sdk._generated.models.index_update_response import IndexUpdateResponse
 from aspect_sdk._generated.models.preview_get_response import PreviewGetResponse

@@ -50,6 +50,7 @@ __all__ = [
     "AssetUpdateRequest",
     "AssetUpdateResponse",
     "CoreFeatureType",
+    "EmbedProviderType",
     "FeatureInfo",
     "FeatureState",
     "FeatureType",
@@ -58,6 +59,7 @@ __all__ = [
     "IndexCreateResponse",
     "IndexGetResponse",
     "IndexListResponse",
+    "IndexUnitGetResponse",
     "IndexUpdateRequest",
     "IndexUpdateResponse",
     "PreviewGetResponse",
@@ -109,6 +111,7 @@ from aspect_sdk._generated.models.asset_type import AssetType as AssetType
 from aspect_sdk._generated.models.asset_update_request import AssetUpdateRequest as AssetUpdateRequest
 from aspect_sdk._generated.models.asset_update_response import AssetUpdateResponse as AssetUpdateResponse
 from aspect_sdk._generated.models.core_feature_type import CoreFeatureType as CoreFeatureType
+from aspect_sdk._generated.models.embed_provider_type import EmbedProviderType as EmbedProviderType
 from aspect_sdk._generated.models.feature_info import FeatureInfo as FeatureInfo
 from aspect_sdk._generated.models.feature_state import FeatureState as FeatureState
 from aspect_sdk._generated.models.feature_type import FeatureType as FeatureType
@@ -117,6 +120,7 @@ from aspect_sdk._generated.models.index_create_request import IndexCreateRequest
 from aspect_sdk._generated.models.index_create_response import IndexCreateResponse as IndexCreateResponse
 from aspect_sdk._generated.models.index_get_response import IndexGetResponse as IndexGetResponse
 from aspect_sdk._generated.models.index_list_response import IndexListResponse as IndexListResponse
+from aspect_sdk._generated.models.index_unit_get_response import IndexUnitGetResponse as IndexUnitGetResponse
 from aspect_sdk._generated.models.index_update_request import IndexUpdateRequest as IndexUpdateRequest
 from aspect_sdk._generated.models.index_update_response import IndexUpdateResponse as IndexUpdateResponse
 from aspect_sdk._generated.models.preview_get_response import PreviewGetResponse as PreviewGetResponse

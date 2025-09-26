@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from aspect_sdk._generated.models.asset_type import AssetType
 from aspect_sdk._generated.models.feature_info import FeatureInfo
 from aspect_sdk._generated.models.preview_get_response import PreviewGetResponse
@@ -37,6 +37,7 @@ class AssetListResponse(BaseModel):
     size_bytes: StrictInt
     mime_type: StrictStr
     save_original: StrictBool
+    duration: Optional[Union[StrictFloat, StrictInt]] = None
     user_id: StrictStr
     index_id: StrictStr
     features: Dict[str, FeatureInfo] = Field(description="Core feature states for an asset - maps core feature types to their current states")
@@ -45,7 +46,7 @@ class AssetListResponse(BaseModel):
     created: datetime
     updated: datetime
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "type", "name", "size_bytes", "mime_type", "save_original", "user_id", "index_id", "features", "proxy", "preview", "created", "updated"]
+    __properties: ClassVar[List[str]] = ["id", "type", "name", "size_bytes", "mime_type", "save_original", "duration", "user_id", "index_id", "features", "proxy", "preview", "created", "updated"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +107,11 @@ class AssetListResponse(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if duration (nullable) is None
+        # and model_fields_set contains the field
+        if self.duration is None and "duration" in self.model_fields_set:
+            _dict['duration'] = None
+
         # set to None if proxy (nullable) is None
         # and model_fields_set contains the field
         if self.proxy is None and "proxy" in self.model_fields_set:
@@ -134,6 +140,7 @@ class AssetListResponse(BaseModel):
             "size_bytes": obj.get("size_bytes"),
             "mime_type": obj.get("mime_type"),
             "save_original": obj.get("save_original"),
+            "duration": obj.get("duration"),
             "user_id": obj.get("user_id"),
             "index_id": obj.get("index_id"),
             "features": dict(

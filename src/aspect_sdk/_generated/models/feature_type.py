@@ -29,7 +29,7 @@ class FeatureType(str, Enum):
     PROXY = 'proxy'
     PREVIEW = 'preview'
     SCENE_DETECT = 'scene_detect'
-    EMBEDDING = 'embedding'
+    VISUAL = 'visual'
     TRANSCRIPTION = 'transcription'
     AUDIO_PROXY = 'audio_proxy'
     MODEL_PROXY = 'model_proxy'

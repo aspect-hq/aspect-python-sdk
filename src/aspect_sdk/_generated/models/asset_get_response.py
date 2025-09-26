@@ -18,10 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from aspect_sdk._generated.models.asset_type import AssetType
 from aspect_sdk._generated.models.feature_info import FeatureInfo
+from aspect_sdk._generated.models.index_unit_get_response import IndexUnitGetResponse
 from aspect_sdk._generated.models.preview_get_response import PreviewGetResponse
 from aspect_sdk._generated.models.proxy_get_response import ProxyGetResponse
 from typing import Optional, Set
@@ -37,15 +38,17 @@ class AssetGetResponse(BaseModel):
     size_bytes: StrictInt
     mime_type: StrictStr
     save_original: StrictBool
+    duration: Optional[Union[StrictFloat, StrictInt]] = None
     user_id: StrictStr
     index_id: StrictStr
     features: Dict[str, FeatureInfo] = Field(description="Core feature states for an asset - maps core feature types to their current states")
     proxy: Optional[ProxyGetResponse] = None
     preview: Optional[PreviewGetResponse] = None
+    index_units: Optional[List[IndexUnitGetResponse]] = None
     created: datetime
     updated: datetime
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "type", "name", "size_bytes", "mime_type", "save_original", "user_id", "index_id", "features", "proxy", "preview", "created", "updated"]
+    __properties: ClassVar[List[str]] = ["id", "type", "name", "size_bytes", "mime_type", "save_original", "duration", "user_id", "index_id", "features", "proxy", "preview", "index_units", "created", "updated"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,10 +104,22 @@ class AssetGetResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of preview
         if self.preview:
             _dict['preview'] = self.preview.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in index_units (list)
+        _items = []
+        if self.index_units:
+            for _item_index_units in self.index_units:
+                if _item_index_units:
+                    _items.append(_item_index_units.to_dict())
+            _dict['index_units'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if duration (nullable) is None
+        # and model_fields_set contains the field
+        if self.duration is None and "duration" in self.model_fields_set:
+            _dict['duration'] = None
 
         # set to None if proxy (nullable) is None
         # and model_fields_set contains the field
@@ -115,6 +130,11 @@ class AssetGetResponse(BaseModel):
         # and model_fields_set contains the field
         if self.preview is None and "preview" in self.model_fields_set:
             _dict['preview'] = None
+
+        # set to None if index_units (nullable) is None
+        # and model_fields_set contains the field
+        if self.index_units is None and "index_units" in self.model_fields_set:
+            _dict['index_units'] = None
 
         return _dict
 
@@ -134,6 +154,7 @@ class AssetGetResponse(BaseModel):
             "size_bytes": obj.get("size_bytes"),
             "mime_type": obj.get("mime_type"),
             "save_original": obj.get("save_original"),
+            "duration": obj.get("duration"),
             "user_id": obj.get("user_id"),
             "index_id": obj.get("index_id"),
             "features": dict(
@@ -144,6 +165,7 @@ class AssetGetResponse(BaseModel):
             else None,
             "proxy": ProxyGetResponse.from_dict(obj["proxy"]) if obj.get("proxy") is not None else None,
             "preview": PreviewGetResponse.from_dict(obj["preview"]) if obj.get("preview") is not None else None,
+            "index_units": [IndexUnitGetResponse.from_dict(_item) for _item in obj["index_units"]] if obj.get("index_units") is not None else None,
             "created": obj.get("created"),
             "updated": obj.get("updated")
         })
