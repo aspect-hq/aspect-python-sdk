@@ -15,7 +15,7 @@ from aspect_sdk._generated import (
     AssetUpdateResponse,
     AssetListResponse,
     ApiClient,
-    FeatureType,
+    CoreFeatureType,
 )
 
 
@@ -27,7 +27,7 @@ class AssetCreateRequest(BaseModel):
     index_id: str
     save_original: bool
     id: Optional[str] = None
-    features: Optional[List[FeatureType]] = None
+    features: Optional[List[CoreFeatureType]] = None
     asset_file: Optional[FileInput] = None
     asset_url: Optional[str] = None
     name: str

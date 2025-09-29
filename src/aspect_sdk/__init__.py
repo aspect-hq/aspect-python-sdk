@@ -52,7 +52,6 @@ from ._generated import (
     AssetUpdateResponse,
     FeatureInfo,
     FeatureState,
-    FeatureType,
     CoreFeatureType,
     HTTPValidationError,
     IndexCreateRequest,

@@ -18,7 +18,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from aspect_sdk._generated.models.asset_storage_variant import AssetStorageVariant
 from aspect_sdk._generated.models.feature_state import FeatureState
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,8 +29,9 @@ class FeatureInfo(BaseModel):
     Information about a single feature
     """ # noqa: E501
     state: FeatureState
+    storage_variant: Optional[AssetStorageVariant] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["state"]
+    __properties: ClassVar[List[str]] = ["state", "storage_variant"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,11 @@ class FeatureInfo(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if storage_variant (nullable) is None
+        # and model_fields_set contains the field
+        if self.storage_variant is None and "storage_variant" in self.model_fields_set:
+            _dict['storage_variant'] = None
+
         return _dict
 
     @classmethod
@@ -89,7 +96,8 @@ class FeatureInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "state": obj.get("state")
+            "state": obj.get("state"),
+            "storage_variant": obj.get("storage_variant")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -53,7 +53,6 @@ __all__ = [
     "EmbedProviderType",
     "FeatureInfo",
     "FeatureState",
-    "FeatureType",
     "HTTPValidationError",
     "IndexCreateRequest",
     "IndexCreateResponse",
@@ -114,7 +113,6 @@ from aspect_sdk._generated.models.core_feature_type import CoreFeatureType as Co
 from aspect_sdk._generated.models.embed_provider_type import EmbedProviderType as EmbedProviderType
 from aspect_sdk._generated.models.feature_info import FeatureInfo as FeatureInfo
 from aspect_sdk._generated.models.feature_state import FeatureState as FeatureState
-from aspect_sdk._generated.models.feature_type import FeatureType as FeatureType
 from aspect_sdk._generated.models.http_validation_error import HTTPValidationError as HTTPValidationError
 from aspect_sdk._generated.models.index_create_request import IndexCreateRequest as IndexCreateRequest
 from aspect_sdk._generated.models.index_create_response import IndexCreateResponse as IndexCreateResponse

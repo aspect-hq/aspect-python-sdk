@@ -34,8 +34,9 @@ class IndexUpdateRequest(BaseModel):
     size_bytes: Optional[StrictInt] = None
     total_tokens_used: Optional[StrictInt] = None
     duration: Optional[Union[StrictFloat, StrictInt]] = None
+    sample_prompts: Optional[List[StrictStr]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "description", "default_features", "num_assets", "size_bytes", "total_tokens_used", "duration"]
+    __properties: ClassVar[List[str]] = ["name", "description", "default_features", "num_assets", "size_bytes", "total_tokens_used", "duration", "sample_prompts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,6 +119,11 @@ class IndexUpdateRequest(BaseModel):
         if self.duration is None and "duration" in self.model_fields_set:
             _dict['duration'] = None
 
+        # set to None if sample_prompts (nullable) is None
+        # and model_fields_set contains the field
+        if self.sample_prompts is None and "sample_prompts" in self.model_fields_set:
+            _dict['sample_prompts'] = None
+
         return _dict
 
     @classmethod
@@ -136,7 +142,8 @@ class IndexUpdateRequest(BaseModel):
             "num_assets": obj.get("num_assets"),
             "size_bytes": obj.get("size_bytes"),
             "total_tokens_used": obj.get("total_tokens_used"),
-            "duration": obj.get("duration")
+            "duration": obj.get("duration"),
+            "sample_prompts": obj.get("sample_prompts")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

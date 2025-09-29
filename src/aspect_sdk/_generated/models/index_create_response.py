@@ -39,10 +39,11 @@ class IndexCreateResponse(BaseModel):
     default_features: List[CoreFeatureType]
     is_sample: StrictBool
     is_sample_ready: StrictBool
+    sample_prompts: List[StrictStr]
     created: datetime
     updated: datetime
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "name", "description", "num_assets", "size_bytes", "total_tokens_used", "duration", "user_id", "default_features", "is_sample", "is_sample_ready", "created", "updated"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "num_assets", "size_bytes", "total_tokens_used", "duration", "user_id", "default_features", "is_sample", "is_sample_ready", "sample_prompts", "created", "updated"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +124,7 @@ class IndexCreateResponse(BaseModel):
             "default_features": obj.get("default_features"),
             "is_sample": obj.get("is_sample"),
             "is_sample_ready": obj.get("is_sample_ready"),
+            "sample_prompts": obj.get("sample_prompts"),
             "created": obj.get("created"),
             "updated": obj.get("updated")
         })

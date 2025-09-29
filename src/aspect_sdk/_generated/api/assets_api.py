@@ -25,7 +25,7 @@ from aspect_sdk._generated.models.asset_get_response import AssetGetResponse
 from aspect_sdk._generated.models.asset_list_response import AssetListResponse
 from aspect_sdk._generated.models.asset_update_request import AssetUpdateRequest
 from aspect_sdk._generated.models.asset_update_response import AssetUpdateResponse
-from aspect_sdk._generated.models.feature_type import FeatureType
+from aspect_sdk._generated.models.core_feature_type import CoreFeatureType
 
 from aspect_sdk._generated.api_client import ApiClient, RequestSerialized
 from aspect_sdk._generated.api_response import ApiResponse
@@ -1114,7 +1114,7 @@ class AssetsApi:
         save_original: Annotated[StrictBool, Field(description="Whether to save the original file")],
         name: Annotated[StrictStr, Field(description="The name of the asset. Must include the extension.")],
         id: Optional[StrictStr] = None,
-        features: Annotated[Optional[List[FeatureType]], Field(description="Features to be extracted on the asset")] = None,
+        features: Annotated[Optional[List[CoreFeatureType]], Field(description="Features to be extracted on the asset")] = None,
         asset_file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
         asset_url: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1143,7 +1143,7 @@ class AssetsApi:
         :param id:
         :type id: str
         :param features: Features to be extracted on the asset
-        :type features: List[FeatureType]
+        :type features: List[CoreFeatureType]
         :param asset_file:
         :type asset_file: bytearray
         :param asset_url:
@@ -1206,7 +1206,7 @@ class AssetsApi:
         save_original: Annotated[StrictBool, Field(description="Whether to save the original file")],
         name: Annotated[StrictStr, Field(description="The name of the asset. Must include the extension.")],
         id: Optional[StrictStr] = None,
-        features: Annotated[Optional[List[FeatureType]], Field(description="Features to be extracted on the asset")] = None,
+        features: Annotated[Optional[List[CoreFeatureType]], Field(description="Features to be extracted on the asset")] = None,
         asset_file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
         asset_url: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1235,7 +1235,7 @@ class AssetsApi:
         :param id:
         :type id: str
         :param features: Features to be extracted on the asset
-        :type features: List[FeatureType]
+        :type features: List[CoreFeatureType]
         :param asset_file:
         :type asset_file: bytearray
         :param asset_url:
@@ -1298,7 +1298,7 @@ class AssetsApi:
         save_original: Annotated[StrictBool, Field(description="Whether to save the original file")],
         name: Annotated[StrictStr, Field(description="The name of the asset. Must include the extension.")],
         id: Optional[StrictStr] = None,
-        features: Annotated[Optional[List[FeatureType]], Field(description="Features to be extracted on the asset")] = None,
+        features: Annotated[Optional[List[CoreFeatureType]], Field(description="Features to be extracted on the asset")] = None,
         asset_file: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None,
         asset_url: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1327,7 +1327,7 @@ class AssetsApi:
         :param id:
         :type id: str
         :param features: Features to be extracted on the asset
-        :type features: List[FeatureType]
+        :type features: List[CoreFeatureType]
         :param asset_file:
         :type asset_file: bytearray
         :param asset_url:

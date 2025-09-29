@@ -34,7 +34,6 @@ from aspect_sdk._generated.models.core_feature_type import CoreFeatureType
 from aspect_sdk._generated.models.embed_provider_type import EmbedProviderType
 from aspect_sdk._generated.models.feature_info import FeatureInfo
 from aspect_sdk._generated.models.feature_state import FeatureState
-from aspect_sdk._generated.models.feature_type import FeatureType
 from aspect_sdk._generated.models.http_validation_error import HTTPValidationError
 from aspect_sdk._generated.models.index_create_request import IndexCreateRequest
 from aspect_sdk._generated.models.index_create_response import IndexCreateResponse

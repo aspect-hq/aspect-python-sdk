@@ -540,7 +540,7 @@ class IndexesApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/indexes/',
+            resource_path='/indexes',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1083,7 +1083,7 @@ class IndexesApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/indexes/',
+            resource_path='/indexes',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
